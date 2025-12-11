@@ -1,0 +1,68 @@
+{
+  "meta": {
+    "game_id": "game_0011",
+    "code_name": "MG-0011",
+    "title_kr": "요정 숲 힐링 아이들",
+    "title_en": "Fairy Forest Healing Idle",
+    "version": "0.1.0",
+    "last_updated": "2025-01-01"
+  },
+  "overview": {
+    "genre_tags": ["idle", "decoration", "social"],
+    "target_audience": {
+      "age": "15-35",
+      "region": ["KR", "SEA"],
+      "play_style": "casual"
+    },
+    "core_loop": "요정 숲을 꾸미고, 방치 수익으로 확장하며, 소셜 퀘스트를 완료한다",
+    "unique_selling_point": "힐링 분위기와 꾸미기의 조화"
+  },
+  "gameplay": {
+    "core_mechanics": [
+      {
+        "name": "숲 꾸미기",
+        "description": "다양한 장식물로 자신만의 숲 디자인"
+      },
+      {
+        "name": "방치 생산",
+        "description": "오프라인 시간 동안 자원 자동 획득"
+      },
+      {
+        "name": "소셜 퀘스트",
+        "description": "친구와 협력하여 퀘스트 완료"
+      }
+    ],
+    "progression": {
+      "type": "forest_expansion",
+      "description": "숲 확장과 새로운 지역 해금으로 진행"
+    },
+    "session_length": "5-10분"
+  },
+  "economy": {
+    "currencies": [
+      {
+        "name": "마나",
+        "type": "soft",
+        "sources": ["방치 수익", "퀘스트", "친구 방문"],
+        "sinks": ["장식물 구매", "지역 확장", "요정 고용"]
+      },
+      {
+        "name": "보석",
+        "type": "hard",
+        "sources": ["인앱 구매", "업적", "이벤트"],
+        "sinks": ["프리미엄 장식물", "생산 가속", "마나 구매"]
+      }
+    ],
+    "monetization": {
+      "model": "F2P + IAP",
+      "iap_items": ["보석 패키지", "월정액", "스타터 팩"],
+      "ad_placements": ["보상형 광고 (생산 가속, 보상 2배)", "인터스티셜 (퀘스트 완료 후)"]
+    }
+  },
+  "technical": {
+    "platform": ["Android", "iOS"],
+    "engine": "Flutter + Flame",
+    "backend": "Firebase",
+    "analytics": "GA4 + BigQuery"
+  }
+}
