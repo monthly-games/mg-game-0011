@@ -1,7 +1,13 @@
-# 요정 숲 힐링 아이들 - BM 설계 문서
+﻿# 요정 숲 힐링 아이들 - BM 설계 문서
 
 > game_id: game_0011
 > repo: mg-game-0011
+> title_kr: 요정 숲 힐링 아이들
+> title_en: Fairy Forest Healing Idle
+> genre_tags: idle, decoration, social
+> doc_type: bm_design
+> source_of_truth: docs/design/gdd_game_0011.json
+> last_updated: 2025-12-19
 
 ---
 
