@@ -279,15 +279,15 @@ int idleManaReward(Forest forest, Duration offlineTime) {
 ## 6. 프로덕션 체크리스트
 
 ### 핵심 기능
-- [ ] 장식물 배치 시스템
-- [ ] 마나 자동 생산
+- [x] 장식물 배치 시스템 (ForestManager: placement mode, confirm/cancel, 위치 지정)
+- [x] 마나 자동 생산 (Timer 1초 주기, 장식물별 생산량 합계)
 - [ ] 상점 시스템
 - [ ] 지역 확장
-- [ ] 요정 시스템
+- [x] 요정 시스템 (FairyComponent: 이동/휴식 상태, 구조물 인식, 탭 수집)
 
 ### 콘텐츠
-- [ ] 100+ 장식물
-- [ ] 10+ 요정
+- [ ] 100+ 장식물 (현재 4종: tree/flower/rock/house)
+- [ ] 10+ 요정 (현재 FairyType.basic 1종)
 - [ ] 5+ 숲 지역
 - [ ] 테마별 장식 세트
 - [ ] 튜토리얼
