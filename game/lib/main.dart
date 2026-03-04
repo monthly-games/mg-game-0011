@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:mg_common_game/systems/progression/achievement_manager.dart';
+import 'package:mg_common_game/systems/quests/daily_quest.dart';
 import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 import 'package:mg_common_game/core/audio/audio_manager.dart';
@@ -29,6 +31,12 @@ import 'ui/main_screen.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await _initializeSystems();
+  // DailyQuest 시스템
+  GetIt.I.registerSingleton(DailyQuestManager());
+  // Achievement 시스템
+  GetIt.I.registerSingleton(AchievementManager());
+  _registerAchievements();
+  _registerDailyQuests();
   runApp(const FairyForestApp());
 }
 
@@ -348,4 +356,62 @@ class FairyForestApp extends StatelessWidget {
       ),
     );
   }
+}
+
+
+void _registerDailyQuests() {
+  final dailyQuest = GetIt.I<DailyQuestManager>();
+  
+  dailyQuest.registerQuest(DailyQuest(
+    id: 'collect_gold',
+    title: '골드 모으기',
+    description: '골드 1000 획득',
+    targetValue: 1000,
+    goldReward: 500,
+    xpReward: 10,
+  ));
+  
+  dailyQuest.registerQuest(DailyQuest(
+    id: 'play_games',
+    title: '게임 플레이',
+    description: '게임 5판 플레이',
+    targetValue: 5,
+    goldReward: 300,
+    xpReward: 5,
+  ));
+  
+  dailyQuest.registerQuest(DailyQuest(
+    id: 'level_up',
+    title: '레벨업',
+    description: '레벨 1 상승',
+    targetValue: 1,
+    goldReward: 200,
+    xpReward: 3,
+  ));
+}
+
+
+void _registerAchievements() {
+  final achievement = GetIt.I<AchievementManager>();
+  
+  achievement.registerAchievement(Achievement(
+    id: 'gold_1000',
+    title: '골드 1000 달성',
+    description: '총 골드 1000을 모으세요',
+    iconAsset: 'assets/achievements/gold_1000.png',
+  ));
+  
+  achievement.registerAchievement(Achievement(
+    id: 'level_10',
+    title: '레벨 10 달성',
+    description: '레벨 10에 도달하세요',
+    iconAsset: 'assets/achievements/level_10.png',
+  ));
+  
+  achievement.registerAchievement(Achievement(
+    id: 'play_100',
+    title: '100판 플레이',
+    description: '게임을 100판 플레이하세요',
+    iconAsset: 'assets/achievements/play_100.png',
+  ));
 }
