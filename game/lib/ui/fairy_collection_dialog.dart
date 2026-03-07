@@ -27,8 +27,8 @@ class FairyCollectionDialog extends StatelessWidget {
             return Container(
               decoration: BoxDecoration(
                 color: isDiscovered
-                    ? Colors.pinkAccent.withOpacity(0.1)
-                    : Colors.grey.withOpacity(0.1),
+                    ? Colors.pinkAccent.withValues(alpha: 0.1)
+                    : Colors.grey.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
                     color: isDiscovered ? Colors.pinkAccent : Colors.grey),

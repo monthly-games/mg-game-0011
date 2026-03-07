@@ -64,7 +64,7 @@ class VfxManager extends Component with HasGameRef {
           else path.lineTo(cos(a) * size, sin(a) * size);
         }
         path.close();
-        canvas.drawPath(path, Paint()..color = color.withOpacity(opacity));
+        canvas.drawPath(path, Paint()..color = color.withValues(alpha: opacity));
       }));
     }));
   }
@@ -74,7 +74,7 @@ class VfxManager extends Component with HasGameRef {
       final spreadX = (_random.nextDouble() - 0.5) * 40;
       return AcceleratedParticle(position: position.clone() + Vector2(spreadX, 0), speed: Vector2(0, -speed), acceleration: Vector2(0, -15), child: ComputedParticle(renderer: (canvas, particle) {
         final opacity = (1.0 - particle.progress).clamp(0.0, 1.0);
-        canvas.drawCircle(Offset.zero, 3, Paint()..color = color.withOpacity(opacity));
+        canvas.drawCircle(Offset.zero, 3, Paint()..color = color.withValues(alpha: opacity));
       }));
     }));
   }
@@ -88,7 +88,7 @@ class VfxManager extends Component with HasGameRef {
         path.moveTo(0, size * 0.3);
         path.cubicTo(-size, -size * 0.3, -size * 0.5, -size, 0, -size * 0.5);
         path.cubicTo(size * 0.5, -size, size, -size * 0.3, 0, size * 0.3);
-        canvas.drawPath(path, Paint()..color = Colors.pink.withOpacity(opacity));
+        canvas.drawPath(path, Paint()..color = Colors.pink.withValues(alpha: opacity));
       }));
     }));
   }
@@ -99,7 +99,7 @@ class VfxManager extends Component with HasGameRef {
       final speed = radius * (0.4 + _random.nextDouble() * 0.6);
       return AcceleratedParticle(position: position.clone(), speed: Vector2(cos(angle), sin(angle)) * speed, acceleration: Vector2(0, 80), child: ComputedParticle(renderer: (canvas, particle) {
         final opacity = (1.0 - particle.progress).clamp(0.0, 1.0);
-        canvas.drawCircle(Offset.zero, 4 * (1.0 - particle.progress * 0.3), Paint()..color = color.withOpacity(opacity));
+        canvas.drawCircle(Offset.zero, 4 * (1.0 - particle.progress * 0.3), Paint()..color = color.withValues(alpha: opacity));
       }));
     }));
   }
@@ -110,7 +110,7 @@ class VfxManager extends Component with HasGameRef {
         final progress = particle.progress;
         final opacity = (1.0 - progress).clamp(0.0, 1.0);
         final radius = 15 + progress * 35;
-        canvas.drawCircle(Offset(position.x, position.y), radius, Paint()..color = color.withOpacity(opacity * 0.3)..style = PaintingStyle.stroke..strokeWidth = 2);
+        canvas.drawCircle(Offset(position.x, position.y), radius, Paint()..color = color.withValues(alpha: opacity * 0.3)..style = PaintingStyle.stroke..strokeWidth = 2);
       });
     }));
   }
@@ -121,7 +121,7 @@ class VfxManager extends Component with HasGameRef {
       final startY = position.y + (_random.nextDouble() - 0.5) * 80;
       return AcceleratedParticle(position: Vector2(startX, startY), speed: Vector2((_random.nextDouble() - 0.5) * 10, -15), acceleration: Vector2(0, -5), child: ComputedParticle(renderer: (canvas, particle) {
         final opacity = (0.5 - (particle.progress - 0.5).abs()).clamp(0.0, 0.5);
-        canvas.drawCircle(Offset.zero, 2, Paint()..color = Colors.white.withOpacity(opacity));
+        canvas.drawCircle(Offset.zero, 2, Paint()..color = Colors.white.withValues(alpha: opacity));
       }));
     }));
   }
