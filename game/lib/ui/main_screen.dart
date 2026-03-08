@@ -11,6 +11,7 @@ import '../features/forest/game_manager.dart';
 import '../features/forest/components/structure_component.dart';
 import 'fairy_collection_dialog.dart';
 import 'hud/mg_forest_hud.dart';
+import 'package:mg_common_game/core/ui/theme/mg_colors.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
@@ -215,7 +216,7 @@ class _MainScreenContentState extends State<MainScreenContent> {
         decoration: BoxDecoration(
           color: isSelected
               ? AppColors.primary.withValues(alpha: 0.2)
-              : Colors.white.withValues(alpha: 0.5),
+              : MGColors.textHighEmphasis.withValues(alpha: 0.5),
           borderRadius: BorderRadius.circular(16),
           border: isSelected
               ? Border.all(color: AppColors.primary, width: 2)
@@ -227,7 +228,7 @@ class _MainScreenContentState extends State<MainScreenContent> {
             Container(
               padding: const EdgeInsets.all(8),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: MGColors.textHighEmphasis,
                 shape: BoxShape.circle,
                 boxShadow: [
                   BoxShadow(
@@ -238,7 +239,7 @@ class _MainScreenContentState extends State<MainScreenContent> {
                 ],
               ),
               child: Icon(icon,
-                  color: canAfford ? AppColors.primary : Colors.grey),
+                  color: canAfford ? AppColors.primary : MGColors.common),
             ),
             const SizedBox(height: 4),
             Text(label,
@@ -254,7 +255,7 @@ class _MainScreenContentState extends State<MainScreenContent> {
                 const SizedBox(width: 4),
                 Text("$cost",
                     style: AppTextStyles.caption.copyWith(
-                        color: canAfford ? Colors.blueAccent : Colors.grey,
+                        color: canAfford ? Colors.blueAccent : MGColors.common,
                         fontWeight: FontWeight.bold)),
               ],
             )

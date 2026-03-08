@@ -53,7 +53,7 @@ class MGForestHud extends StatelessWidget {
                   onPressed: onPause,
                   size: 44,
                   backgroundColor: Colors.black54,
-                  color: Colors.white,
+                  color: MGColors.textHighEmphasis,
                 ),
               ],
             ),
@@ -99,7 +99,7 @@ class MGForestHud extends StatelessWidget {
           Text(
             _formatNumber(mana),
             style: MGTextStyles.hud.copyWith(
-              color: Colors.white,
+              color: MGColors.textHighEmphasis,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -116,10 +116,10 @@ class MGForestHud extends StatelessWidget {
     Color color;
     IconData icon;
     if (isLow) {
-      color = Colors.red;
+      color = MGColors.error;
       icon = Icons.sentiment_dissatisfied;
     } else if (isMedium) {
-      color = Colors.orange;
+      color = MGColors.warning;
       icon = Icons.sentiment_neutral;
     } else {
       color = Colors.pinkAccent;
@@ -147,7 +147,7 @@ class MGForestHud extends StatelessWidget {
           Text(
             '$happinessPercent%',
             style: MGTextStyles.hud.copyWith(
-              color: Colors.white,
+              color: MGColors.textHighEmphasis,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -178,7 +178,7 @@ class MGForestHud extends StatelessWidget {
           Text(
             '$fairyCount',
             style: MGTextStyles.hud.copyWith(
-              color: Colors.white,
+              color: MGColors.textHighEmphasis,
               fontWeight: FontWeight.bold,
             ),
           ),
@@ -191,11 +191,11 @@ class MGForestHud extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       decoration: BoxDecoration(
-        color: Colors.green.withValues(alpha: 0.8),
+        color: MGColors.success.withValues(alpha: 0.8),
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
-            color: Colors.green.withValues(alpha: 0.4),
+            color: MGColors.success.withValues(alpha: 0.4),
             blurRadius: 8,
             spreadRadius: 2,
           ),
@@ -206,14 +206,14 @@ class MGForestHud extends StatelessWidget {
         children: [
           const Icon(
             Icons.construction,
-            color: Colors.white,
+            color: MGColors.textHighEmphasis,
             size: 24,
           ),
           MGSpacing.hSm,
           Text(
             'BUILD MODE',
             style: MGTextStyles.hud.copyWith(
-              color: Colors.white,
+              color: MGColors.textHighEmphasis,
               fontWeight: FontWeight.bold,
             ),
           ),

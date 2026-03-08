@@ -1,6 +1,7 @@
 import 'package:flame/events.dart';
 import '../forest_game.dart';
 import '../game_manager.dart'; // Ensure valid import for FairyType
+import 'package:mg_common_game/core/ui/theme/mg_colors.dart';
 
 enum FairyState { moving, resting }
 
@@ -86,7 +87,7 @@ class FairyComponent extends SpriteComponent
     // Unhide if moving
     if (_state == FairyState.moving && _isHidden) {
       _isHidden = false;
-      paint.color = const Color(0xFFFFFFFF);
+      paint.color = MGColors.textHighEmphasis;
     }
   }
 

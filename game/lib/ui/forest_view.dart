@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../systems/forest_manager.dart';
 import '../core/models/decoration.dart';
+import 'package:mg_common_game/core/ui/theme/mg_colors.dart';
 
 class ForestView extends StatefulWidget {
   final ForestManager forestManager;
@@ -87,7 +88,7 @@ class _ForestViewState extends State<ForestView> {
         icon = Icons.local_florist;
         break;
       case DecorationType.rock:
-        color = Colors.grey;
+        color = MGColors.common;
         icon = Icons.landscape;
         break;
       case DecorationType.house:

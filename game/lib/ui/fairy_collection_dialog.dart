@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../features/forest/game_manager.dart';
+import 'package:mg_common_game/core/ui/theme/mg_colors.dart';
 
 class FairyCollectionDialog extends StatelessWidget {
   final GameManager gameManager;
@@ -28,24 +29,24 @@ class FairyCollectionDialog extends StatelessWidget {
               decoration: BoxDecoration(
                 color: isDiscovered
                     ? Colors.pinkAccent.withValues(alpha: 0.1)
-                    : Colors.grey.withValues(alpha: 0.1),
+                    : MGColors.common.withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
-                    color: isDiscovered ? Colors.pinkAccent : Colors.grey),
+                    color: isDiscovered ? Colors.pinkAccent : MGColors.common),
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(
                     isDiscovered ? Icons.star : Icons.question_mark,
-                    color: isDiscovered ? Colors.pinkAccent : Colors.grey,
+                    color: isDiscovered ? Colors.pinkAccent : MGColors.common,
                   ),
                   const SizedBox(height: 4),
                   Text(
                     type.name.toUpperCase(),
                     style: TextStyle(
                         fontSize: 10,
-                        color: isDiscovered ? Colors.black : Colors.grey),
+                        color: isDiscovered ? Colors.black : MGColors.common),
                   )
                 ],
               ),
