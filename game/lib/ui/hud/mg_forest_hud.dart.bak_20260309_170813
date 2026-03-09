@@ -10,7 +10,6 @@ class MGForestHud extends StatelessWidget {
   final bool isBuildMode;
   final VoidCallback? onPause;
   final VoidCallback? onBuildToggle;
-  final VoidCallback? onDailyHub;
 
   const MGForestHud({
     super.key,
@@ -20,7 +19,6 @@ class MGForestHud extends StatelessWidget {
     this.isBuildMode = false,
     this.onPause,
     this.onBuildToggle,
-    this.onDailyHub,
   });
 
   @override
@@ -50,16 +48,6 @@ class MGForestHud extends StatelessWidget {
                 _buildFairyCount(),
 
                 // 일시정지 버튼
-        if (onDailyHub != null)
-          MGIconButton(
-            icon: Icons.calendar_today,
-            onPressed: onDailyHub,
-            size: 44,
-            backgroundColor: MGColors.info.withValues(alpha: 0.8),
-            color: MGColors.textHighEmphasis,
-            tooltip: 'Daily Hub',
-          ),
-        MGSpacing.hXs,
                 MGIconButton(
                   icon: Icons.pause,
                   onPressed: onPause,
