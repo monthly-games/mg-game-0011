@@ -14,8 +14,9 @@ dependencies:
   get_it: ^9.2.0
   equatable: ^2.0.5
   mg_common_game:
-    path: ../../../repos/mg-common-game
+    path: ../../../libs/mg_common_game
   flame: ^1.13.0
+  flame_spine: ^0.3.0+1
   shared_preferences: ^2.2.2
 
   # The following adds the Cupertino Icons font to your application.
@@ -33,3 +34,4 @@ flutter:
   assets:
     - assets/images/
     - assets/audio/
+    - assets/spine/characters/
