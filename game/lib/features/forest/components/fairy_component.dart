@@ -1,12 +1,18 @@
+import 'dart:math';
+
+import 'package:flame/components.dart';
 import 'package:flame/events.dart';
+import 'package:flame/game.dart';
+import 'package:flutter/material.dart';
 import '../forest_game.dart';
 import '../game_manager.dart'; // Ensure valid import for FairyType
+import 'structure_component.dart';
 import 'package:mg_common_game/core/ui/theme/mg_colors.dart';
 
 enum FairyState { moving, resting }
 
 class FairyComponent extends SpriteComponent
-    with HasGameRef<ForestGame>, TapCallbacks {
+    with HasGameReference<ForestGame>, TapCallbacks {
   static final _rng = Random();
   Vector2 _targetPos = Vector2.zero();
   final double _speed = 50.0;
@@ -24,10 +30,10 @@ class FairyComponent extends SpriteComponent
   @override
   Future<void> onLoad() async {
     try {
-      sprite = await gameRef.loadSprite('fairy.png');
+      sprite = await game.loadSprite('fairy.png');
     } catch (_) {
       // Fallback to heart icon if fairy not ready
-      sprite = await gameRef.loadSprite('item_heart.png');
+      sprite = await game.loadSprite('item_heart.png');
     }
   }
 
@@ -38,7 +44,7 @@ class FairyComponent extends SpriteComponent
   @override
   void update(double dt) {
     super.update(dt);
-    if (gameRef.size.x == 0) return;
+    if (game.size.x == 0) return;
 
     if (_state == FairyState.resting) {
       _restTimer -= dt;
@@ -58,7 +64,7 @@ class FairyComponent extends SpriteComponent
             _restTimer = 5.0;
             _isHidden = true;
             // Simple opacity hide
-            paint.color = const Color(0x00FFFFFF);
+            paint.color = Colors.transparent;
           } else {
             _restTimer = 3.0;
           }
@@ -94,7 +100,7 @@ class FairyComponent extends SpriteComponent
   // ... keep _findNearestStructure, _isNearStructure, _pickRandomTarget ...
   StructureComponent? _findNearestStructure() {
     try {
-      final structures = gameRef.children.whereType<StructureComponent>();
+      final structures = game.children.whereType<StructureComponent>();
       if (structures.isEmpty) return null;
       return structures.cast<StructureComponent>().firstWhere(
             (s) => s.position.distanceTo(position) < 50,
@@ -113,14 +119,14 @@ class FairyComponent extends SpriteComponent
 
   void _pickRandomTarget() {
     final structures =
-        gameRef.children.whereType<StructureComponent>().toList();
+        game.children.whereType<StructureComponent>().toList();
 
     if (structures.isNotEmpty && _rng.nextDouble() < 0.3) {
       final targetStructure = structures[_rng.nextInt(structures.length)];
       _targetPos = targetStructure.position - Vector2(0, 20);
     } else {
-      final x = _rng.nextDouble() * (gameRef.size.x - 50) + 25;
-      final y = _rng.nextDouble() * (gameRef.size.y - 150) + 100;
+      final x = _rng.nextDouble() * (game.size.x - 50) + 25;
+      final y = _rng.nextDouble() * (game.size.y - 150) + 100;
       _targetPos = Vector2(x, y);
     }
   }
@@ -128,7 +134,7 @@ class FairyComponent extends SpriteComponent
   @override
   void onTapDown(TapDownEvent event) {
     // Collection Logic
-    gameRef.gameManager.collectFairy(FairyType.basic); // For now just basic
+    game.gameManager.collectFairy(FairyType.basic); // For now just basic
 
     // Feedback: Teleport to new random spot immediately
     _pickRandomTarget();

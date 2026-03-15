@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../systems/forest_manager.dart';
-import '../core/models/decoration.dart';
+import '../core/models/decoration.dart' as forest;
 import 'package:mg_common_game/core/ui/theme/mg_colors.dart';
 
 class ForestView extends StatefulWidget {
@@ -74,24 +74,24 @@ class _ForestViewState extends State<ForestView> {
     );
   }
 
-  Widget _buildDecorationWidget(Decoration deco) {
+  Widget _buildDecorationWidget(forest.Decoration deco) {
     Color color;
     IconData icon;
 
     switch (deco.type) {
-      case DecorationType.tree:
+      case forest.DecorationType.tree:
         color = Colors.green[800]!;
         icon = Icons.park;
         break;
-      case DecorationType.flower:
+      case forest.DecorationType.flower:
         color = Colors.pink;
         icon = Icons.local_florist;
         break;
-      case DecorationType.rock:
+      case forest.DecorationType.rock:
         color = MGColors.common;
         icon = Icons.landscape;
         break;
-      case DecorationType.house:
+      case forest.DecorationType.house:
         color = Colors.brown;
         icon = Icons.house;
         break;
