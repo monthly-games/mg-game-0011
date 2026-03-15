@@ -9,7 +9,10 @@
       "dependencies": [
         "cupertino_icons",
         "equatable",
+        "firebase_analytics",
+        "firebase_core",
         "flame",
+        "flame_spine",
         "flutter",
         "get_it",
         "google_mobile_ads",
@@ -19,8 +22,7 @@
       ],
       "devDependencies": [
         "flutter_lints",
-        "flutter_test",
-        "google_mobile_ads"
+        "flutter_test"
       ]
     },
     {
@@ -49,14 +51,24 @@
       ]
     },
     {
-      "name": "google_mobile_ads",
-      "version": "5.3.1",
+      "name": "firebase_analytics",
+      "version": "10.10.7",
       "dependencies": [
+        "firebase_analytics_platform_interface",
+        "firebase_analytics_web",
+        "firebase_core",
+        "firebase_core_platform_interface",
+        "flutter"
+      ]
+    },
+    {
+      "name": "firebase_core",
+      "version": "2.32.0",
+      "dependencies": [
+        "firebase_core_platform_interface",
+        "firebase_core_web",
         "flutter",
-        "meta",
-        "webview_flutter",
-        "webview_flutter_android",
-        "webview_flutter_wkwebview"
+        "meta"
       ]
     },
     {
@@ -78,6 +90,16 @@
       ]
     },
     {
+      "name": "flame_spine",
+      "version": "0.3.0+1",
+      "dependencies": [
+        "collection",
+        "flame",
+        "flutter",
+        "spine_flutter"
+      ]
+    },
+    {
       "name": "flame",
       "version": "1.34.0",
       "dependencies": [
@@ -90,19 +112,23 @@
     },
     {
       "name": "mg_common_game",
-      "version": "1.0.0",
+      "version": "1.2.0",
       "dependencies": [
         "firebase_analytics",
         "firebase_core",
         "firebase_crashlytics",
+        "firebase_messaging",
         "firebase_remote_config",
         "flame",
         "flame_audio",
         "flame_spine",
         "flutter",
+        "flutter_local_notifications",
         "freezed_annotation",
         "get_it",
         "google_mobile_ads",
+        "http",
+        "in_app_purchase",
         "injectable",
         "intl",
         "json_annotation",
@@ -146,6 +172,17 @@
         "meta",
         "sky_engine",
         "vector_math"
+      ]
+    },
+    {
+      "name": "google_mobile_ads",
+      "version": "5.3.1",
+      "dependencies": [
+        "flutter",
+        "meta",
+        "webview_flutter",
+        "webview_flutter_android",
+        "webview_flutter_wkwebview"
       ]
     },
     {
@@ -238,32 +275,48 @@
       ]
     },
     {
-      "name": "webview_flutter",
-      "version": "4.13.0",
+      "name": "firebase_core_platform_interface",
+      "version": "5.4.2",
       "dependencies": [
+        "collection",
         "flutter",
-        "webview_flutter_android",
-        "webview_flutter_platform_interface",
-        "webview_flutter_wkwebview"
+        "flutter_test",
+        "meta",
+        "plugin_platform_interface"
       ]
     },
     {
-      "name": "webview_flutter_wkwebview",
-      "version": "3.23.5",
+      "name": "firebase_analytics_web",
+      "version": "0.5.7+7",
       "dependencies": [
+        "_flutterfire_internals",
+        "firebase_analytics_platform_interface",
+        "firebase_core",
+        "firebase_core_web",
         "flutter",
-        "meta",
-        "path",
-        "webview_flutter_platform_interface"
+        "flutter_web_plugins"
       ]
     },
     {
-      "name": "webview_flutter_android",
-      "version": "4.10.11",
+      "name": "firebase_analytics_platform_interface",
+      "version": "3.10.8",
       "dependencies": [
+        "_flutterfire_internals",
+        "firebase_core",
         "flutter",
         "meta",
-        "webview_flutter_platform_interface"
+        "plugin_platform_interface"
+      ]
+    },
+    {
+      "name": "firebase_core_web",
+      "version": "2.24.0",
+      "dependencies": [
+        "firebase_core_platform_interface",
+        "flutter",
+        "flutter_web_plugins",
+        "meta",
+        "web"
       ]
     },
     {
@@ -325,13 +378,70 @@
       ]
     },
     {
+      "name": "spine_flutter",
+      "version": "4.3.1",
+      "dependencies": [
+        "crypto",
+        "flutter",
+        "http",
+        "inject_js",
+        "js",
+        "meta",
+        "path",
+        "universal_ffi"
+      ]
+    },
+    {
       "name": "ordered_set",
       "version": "8.0.0",
       "dependencies": []
     },
     {
+      "name": "flutter_local_notifications",
+      "version": "17.2.4",
+      "dependencies": [
+        "clock",
+        "flutter",
+        "flutter_local_notifications_linux",
+        "flutter_local_notifications_platform_interface",
+        "timezone"
+      ]
+    },
+    {
+      "name": "firebase_messaging",
+      "version": "14.7.10",
+      "dependencies": [
+        "firebase_core",
+        "firebase_core_platform_interface",
+        "firebase_messaging_platform_interface",
+        "firebase_messaging_web",
+        "flutter",
+        "meta"
+      ]
+    },
+    {
+      "name": "http",
+      "version": "1.6.0",
+      "dependencies": [
+        "async",
+        "http_parser",
+        "meta",
+        "web"
+      ]
+    },
+    {
+      "name": "in_app_purchase",
+      "version": "3.2.3",
+      "dependencies": [
+        "flutter",
+        "in_app_purchase_android",
+        "in_app_purchase_platform_interface",
+        "in_app_purchase_storekit"
+      ]
+    },
+    {
       "name": "vibration",
-      "version": "1.9.0",
+      "version": "2.1.0",
       "dependencies": [
         "flutter",
         "vibration_platform_interface"
@@ -345,16 +455,6 @@
         "flame",
         "flutter",
         "synchronized"
-      ]
-    },
-    {
-      "name": "flame_spine",
-      "version": "0.3.0+1",
-      "dependencies": [
-        "collection",
-        "flame",
-        "flutter",
-        "spine_flutter"
       ]
     },
     {
@@ -413,27 +513,6 @@
       ]
     },
     {
-      "name": "firebase_analytics",
-      "version": "10.10.7",
-      "dependencies": [
-        "firebase_analytics_platform_interface",
-        "firebase_analytics_web",
-        "firebase_core",
-        "firebase_core_platform_interface",
-        "flutter"
-      ]
-    },
-    {
-      "name": "firebase_core",
-      "version": "2.32.0",
-      "dependencies": [
-        "firebase_core_platform_interface",
-        "firebase_core_web",
-        "flutter",
-        "meta"
-      ]
-    },
-    {
       "name": "async",
       "version": "2.13.0",
       "dependencies": [
@@ -464,6 +543,35 @@
       "name": "characters",
       "version": "1.4.0",
       "dependencies": []
+    },
+    {
+      "name": "webview_flutter",
+      "version": "4.13.0",
+      "dependencies": [
+        "flutter",
+        "webview_flutter_android",
+        "webview_flutter_platform_interface",
+        "webview_flutter_wkwebview"
+      ]
+    },
+    {
+      "name": "webview_flutter_wkwebview",
+      "version": "3.23.5",
+      "dependencies": [
+        "flutter",
+        "meta",
+        "path",
+        "webview_flutter_platform_interface"
+      ]
+    },
+    {
+      "name": "webview_flutter_android",
+      "version": "4.10.11",
+      "dependencies": [
+        "flutter",
+        "meta",
+        "webview_flutter_platform_interface"
+      ]
     },
     {
       "name": "leak_tracker_testing",
@@ -515,13 +623,34 @@
       ]
     },
     {
-      "name": "webview_flutter_platform_interface",
-      "version": "2.14.0",
+      "name": "plugin_platform_interface",
+      "version": "2.1.8",
       "dependencies": [
-        "flutter",
-        "meta",
-        "plugin_platform_interface"
+        "meta"
       ]
+    },
+    {
+      "name": "flutter_web_plugins",
+      "version": "0.0.0",
+      "dependencies": [
+        "flutter"
+      ]
+    },
+    {
+      "name": "_flutterfire_internals",
+      "version": "1.3.35",
+      "dependencies": [
+        "collection",
+        "firebase_core",
+        "firebase_core_platform_interface",
+        "flutter",
+        "meta"
+      ]
+    },
+    {
+      "name": "web",
+      "version": "1.1.1",
+      "dependencies": []
     },
     {
       "name": "path_provider_windows",
@@ -551,25 +680,6 @@
       ]
     },
     {
-      "name": "web",
-      "version": "1.1.1",
-      "dependencies": []
-    },
-    {
-      "name": "flutter_web_plugins",
-      "version": "0.0.0",
-      "dependencies": [
-        "flutter"
-      ]
-    },
-    {
-      "name": "plugin_platform_interface",
-      "version": "2.1.8",
-      "dependencies": [
-        "meta"
-      ]
-    },
-    {
       "name": "path_provider_linux",
       "version": "2.2.1",
       "dependencies": [
@@ -578,6 +688,123 @@
         "path",
         "path_provider_platform_interface",
         "xdg_directories"
+      ]
+    },
+    {
+      "name": "universal_ffi",
+      "version": "1.1.3",
+      "dependencies": [
+        "ffi",
+        "path",
+        "wasm_ffi"
+      ]
+    },
+    {
+      "name": "crypto",
+      "version": "3.0.7",
+      "dependencies": [
+        "typed_data"
+      ]
+    },
+    {
+      "name": "js",
+      "version": "0.6.7",
+      "dependencies": [
+        "meta"
+      ]
+    },
+    {
+      "name": "inject_js",
+      "version": "2.1.0",
+      "dependencies": []
+    },
+    {
+      "name": "timezone",
+      "version": "0.9.4",
+      "dependencies": [
+        "path"
+      ]
+    },
+    {
+      "name": "flutter_local_notifications_platform_interface",
+      "version": "7.2.0",
+      "dependencies": [
+        "flutter",
+        "plugin_platform_interface"
+      ]
+    },
+    {
+      "name": "flutter_local_notifications_linux",
+      "version": "4.0.1",
+      "dependencies": [
+        "dbus",
+        "ffi",
+        "flutter",
+        "flutter_local_notifications_platform_interface",
+        "path",
+        "xdg_directories"
+      ]
+    },
+    {
+      "name": "firebase_messaging_web",
+      "version": "3.5.18",
+      "dependencies": [
+        "_flutterfire_internals",
+        "firebase_core",
+        "firebase_core_web",
+        "firebase_messaging_platform_interface",
+        "flutter",
+        "flutter_web_plugins",
+        "js",
+        "meta"
+      ]
+    },
+    {
+      "name": "firebase_messaging_platform_interface",
+      "version": "4.5.37",
+      "dependencies": [
+        "_flutterfire_internals",
+        "firebase_core",
+        "flutter",
+        "meta",
+        "plugin_platform_interface"
+      ]
+    },
+    {
+      "name": "http_parser",
+      "version": "4.1.2",
+      "dependencies": [
+        "collection",
+        "source_span",
+        "string_scanner",
+        "typed_data"
+      ]
+    },
+    {
+      "name": "in_app_purchase_storekit",
+      "version": "0.4.8+1",
+      "dependencies": [
+        "collection",
+        "flutter",
+        "in_app_purchase_platform_interface",
+        "json_annotation"
+      ]
+    },
+    {
+      "name": "in_app_purchase_platform_interface",
+      "version": "1.4.0",
+      "dependencies": [
+        "flutter",
+        "plugin_platform_interface"
+      ]
+    },
+    {
+      "name": "in_app_purchase_android",
+      "version": "0.4.0+8",
+      "dependencies": [
+        "collection",
+        "flutter",
+        "in_app_purchase_platform_interface"
       ]
     },
     {
@@ -614,20 +841,6 @@
       ]
     },
     {
-      "name": "spine_flutter",
-      "version": "4.3.1",
-      "dependencies": [
-        "crypto",
-        "flutter",
-        "http",
-        "inject_js",
-        "js",
-        "meta",
-        "path",
-        "universal_ffi"
-      ]
-    },
-    {
       "name": "firebase_remote_config_web",
       "version": "1.6.7",
       "dependencies": [
@@ -650,17 +863,6 @@
       ]
     },
     {
-      "name": "firebase_core_platform_interface",
-      "version": "5.4.2",
-      "dependencies": [
-        "collection",
-        "flutter",
-        "flutter_test",
-        "meta",
-        "plugin_platform_interface"
-      ]
-    },
-    {
       "name": "firebase_crashlytics_platform_interface",
       "version": "3.6.35",
       "dependencies": [
@@ -673,37 +875,12 @@
       ]
     },
     {
-      "name": "firebase_analytics_web",
-      "version": "0.5.7+7",
+      "name": "webview_flutter_platform_interface",
+      "version": "2.14.0",
       "dependencies": [
-        "_flutterfire_internals",
-        "firebase_analytics_platform_interface",
-        "firebase_core",
-        "firebase_core_web",
-        "flutter",
-        "flutter_web_plugins"
-      ]
-    },
-    {
-      "name": "firebase_analytics_platform_interface",
-      "version": "3.10.8",
-      "dependencies": [
-        "_flutterfire_internals",
-        "firebase_core",
         "flutter",
         "meta",
         "plugin_platform_interface"
-      ]
-    },
-    {
-      "name": "firebase_core_web",
-      "version": "2.24.0",
-      "dependencies": [
-        "firebase_core_platform_interface",
-        "flutter",
-        "flutter_web_plugins",
-        "meta",
-        "web"
       ]
     },
     {
@@ -727,6 +904,34 @@
       "dependencies": [
         "meta",
         "path"
+      ]
+    },
+    {
+      "name": "wasm_ffi",
+      "version": "2.0.7",
+      "dependencies": [
+        "ffi",
+        "http",
+        "meta",
+        "path",
+        "web"
+      ]
+    },
+    {
+      "name": "typed_data",
+      "version": "1.4.0",
+      "dependencies": [
+        "collection"
+      ]
+    },
+    {
+      "name": "dbus",
+      "version": "0.7.12",
+      "dependencies": [
+        "args",
+        "ffi",
+        "meta",
+        "xml"
       ]
     },
     {
@@ -763,16 +968,6 @@
         "path_provider_linux",
         "path_provider_platform_interface",
         "path_provider_windows"
-      ]
-    },
-    {
-      "name": "http",
-      "version": "1.6.0",
-      "dependencies": [
-        "async",
-        "http_parser",
-        "meta",
-        "web"
       ]
     },
     {
@@ -828,43 +1023,18 @@
       ]
     },
     {
-      "name": "universal_ffi",
-      "version": "1.1.3",
-      "dependencies": [
-        "ffi",
-        "path",
-        "wasm_ffi"
-      ]
-    },
-    {
-      "name": "crypto",
-      "version": "3.0.7",
-      "dependencies": [
-        "typed_data"
-      ]
-    },
-    {
-      "name": "js",
-      "version": "0.6.7",
-      "dependencies": [
-        "meta"
-      ]
-    },
-    {
-      "name": "inject_js",
-      "version": "2.1.0",
-      "dependencies": []
-    },
-    {
-      "name": "_flutterfire_internals",
-      "version": "1.3.35",
+      "name": "xml",
+      "version": "6.6.1",
       "dependencies": [
         "collection",
-        "firebase_core",
-        "firebase_core_platform_interface",
-        "flutter",
-        "meta"
+        "meta",
+        "petitparser"
       ]
+    },
+    {
+      "name": "args",
+      "version": "2.7.0",
+      "dependencies": []
     },
     {
       "name": "win32_registry",
@@ -913,31 +1083,11 @@
       ]
     },
     {
-      "name": "http_parser",
-      "version": "4.1.2",
+      "name": "petitparser",
+      "version": "7.0.2",
       "dependencies": [
         "collection",
-        "source_span",
-        "string_scanner",
-        "typed_data"
-      ]
-    },
-    {
-      "name": "wasm_ffi",
-      "version": "2.0.7",
-      "dependencies": [
-        "ffi",
-        "http",
-        "meta",
-        "path",
-        "web"
-      ]
-    },
-    {
-      "name": "typed_data",
-      "version": "1.4.0",
-      "dependencies": [
-        "collection"
+        "meta"
       ]
     }
   ],

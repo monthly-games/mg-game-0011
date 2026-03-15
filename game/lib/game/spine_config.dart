@@ -13,7 +13,7 @@ const kFairyHealerMeta = SpineAssetMeta(
   path: 'spine/characters/fairy_healer',
   atlasPath: 'assets/spine/characters/fairy_healer/fairy_healer.atlas',
   skeletonPath:
-      'assets/spine/characters/fairy_healer/fairy_healer.skel',
+      'assets/spine/characters/fairy_healer/fairy_healer.json',
   animations: ['idle', 'walk', 'attack', 'hit'],
   defaultAnimation: 'idle',
   defaultMix: 0.2,
@@ -27,7 +27,7 @@ const kForestSpiritMeta = SpineAssetMeta(
   atlasPath:
       'assets/spine/characters/forest_spirit/forest_spirit.atlas',
   skeletonPath:
-      'assets/spine/characters/forest_spirit/forest_spirit.skel',
+      'assets/spine/characters/forest_spirit/forest_spirit.json',
   animations: ['idle', 'walk', 'attack', 'hit'],
   defaultAnimation: 'idle',
   defaultMix: 0.2,
@@ -41,7 +41,7 @@ const kWoodlandSpriteMeta = SpineAssetMeta(
   atlasPath:
       'assets/spine/characters/woodland_sprite/woodland_sprite.atlas',
   skeletonPath:
-      'assets/spine/characters/woodland_sprite/woodland_sprite.skel',
+      'assets/spine/characters/woodland_sprite/woodland_sprite.json',
   animations: ['idle', 'walk', 'attack', 'hit'],
   defaultAnimation: 'idle',
   defaultMix: 0.2,

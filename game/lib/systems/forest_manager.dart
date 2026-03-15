@@ -5,7 +5,6 @@ import '../core/models/decoration.dart';
 class ForestManager extends ChangeNotifier {
   double _mana = 100.0;
   final List<Decoration> _decorations = [];
-  Timer? _productionTimer;
 
   // Placement State
   bool _isPlacementMode = false;
@@ -20,7 +19,6 @@ class ForestManager extends ChangeNotifier {
   }
 
   void _startProduction() {
-    _productionTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
       _produceMana();
     });
   }

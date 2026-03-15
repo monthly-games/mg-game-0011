@@ -6,47 +6,47 @@ import 'package:flutter/material.dart';
 
 /// VFX Manager for Fairy Forest Healing Idle (MG-0011)
 /// Decoration + Idle + Social 게임 전용 이펙트 관리자
-class VfxManager extends Component with HasGameRef {
+class VfxManager extends Component with HasGameReference {
   VfxManager();
   final Random _random = Random();
 
   // Decoration/Forest Effects
   void showDecorationPlace(Vector2 position) {
-    gameRef.add(_createSparkleEffect(position: position, color: Colors.amber, count: 15));
-    gameRef.add(_createGroundCircle(position: position, color: Colors.green.shade300));
+    game.add(_createSparkleEffect(position: position, color: Colors.amber, count: 15));
+    game.add(_createGroundCircle(position: position, color: Colors.green.shade300));
   }
 
   void showForestGrow(Vector2 position) {
-    gameRef.add(_createRisingEffect(position: position, color: Colors.green, count: 12, speed: 60));
-    gameRef.add(_createSparkleEffect(position: position, color: Colors.lightGreen, count: 8));
+    game.add(_createRisingEffect(position: position, color: Colors.green, count: 12, speed: 60));
+    game.add(_createSparkleEffect(position: position, color: Colors.lightGreen, count: 8));
   }
 
   void showHealingComplete(Vector2 position) {
-    gameRef.add(_createRisingEffect(position: position, color: Colors.pink.shade200, count: 15, speed: 50));
+    game.add(_createRisingEffect(position: position, color: Colors.pink.shade200, count: 15, speed: 50));
     for (int i = 0; i < 3; i++) {
       Future.delayed(Duration(milliseconds: i * 100), () {
         if (!isMounted) return;
-        gameRef.add(_createHeartEffect(position: position + Vector2((_random.nextDouble() - 0.5) * 40, -10)));
+        game.add(_createHeartEffect(position: position + Vector2((_random.nextDouble() - 0.5) * 40, -10)));
       });
     }
   }
 
   void showFriendVisit(Vector2 position) {
-    gameRef.add(_createSparkleEffect(position: position, color: Colors.lightBlue, count: 12));
+    game.add(_createSparkleEffect(position: position, color: Colors.lightBlue, count: 12));
     showNumberPopup(position, '친구 방문!', color: Colors.cyan);
   }
 
   void showQuestComplete(Vector2 position) {
-    gameRef.add(_createExplosionEffect(position: position, color: Colors.amber, count: 25, radius: 60));
-    gameRef.add(_createSparkleEffect(position: position, color: Colors.yellow, count: 15));
+    game.add(_createExplosionEffect(position: position, color: Colors.amber, count: 25, radius: 60));
+    game.add(_createSparkleEffect(position: position, color: Colors.yellow, count: 15));
   }
 
   void showAmbientParticles(Vector2 position) {
-    gameRef.add(_createFloatingParticles(position: position));
+    game.add(_createFloatingParticles(position: position));
   }
 
   void showNumberPopup(Vector2 position, String text, {Color color = Colors.white}) {
-    gameRef.add(_NumberPopup(position: position, text: text, color: color));
+    game.add(_NumberPopup(position: position, text: text, color: color));
   }
 
   // Private generators
