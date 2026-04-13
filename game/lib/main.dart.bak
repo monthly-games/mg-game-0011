@@ -1,30 +1,25 @@
+import 'package:mg_common_game/mg_common_game.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/foundation.dart';
-import 'package:mg_common_game/systems/systems.dart';
-import 'package:mg_common_game/systems/progression/achievement_manager.dart';
-import 'package:mg_common_game/systems/quests/daily_quest.dart';
 import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
-import 'package:mg_common_game/core/audio/audio_manager.dart';
-import 'package:mg_common_game/core/ui/theme/app_colors.dart';
-import 'package:mg_common_game/core/systems/save_manager_helper.dart';
-import 'package:mg_common_game/systems/progression/upgrade_manager.dart';
 import 'systems/forest_manager.dart';
 import 'game/healing_manager.dart';
 import 'game/garden_manager.dart';
 import 'game/combo_manager.dart';
 import 'ui/main_screen.dart';
-import 'package:mg_common_game/systems/progression/prestige_manager.dart';
 import 'screens/daily_quest_screen.dart';
 import 'screens/achievement_screen.dart';
-
+import 'screens/collection_screen.dart';
+// // import 'game/tutorial_config.dart'; // TutorialManager not available
+// import 'game/balancing_config.dart';
+// 
 // ============================================================
-// Healing Garden — MG-0011
+// Healing Garden -- MG-0011
 // Phase 1 Week 4: Mechanic Enhancement (Puzzle)
-//
+// //
 // Genre: Puzzle (match-3 + garden management hybrid)
 // Region: Africa (Gold theme)
-//
+// //
 // Core loop: Match-3 → Heal Patients → Grow Garden → Combo Chains
 // Subsystems:
 //   - Healing: Patient treatment with power/recovery/slots
@@ -32,69 +27,112 @@ import 'screens/achievement_screen.dart';
 //   - Combo: Match chains with multiplier/bonus scaling
 //   - Upgrades: 8 registered via UpgradeManager
 // ============================================================
-
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await _initializeSystems();
-  // DailyQuest 시스템
-  GetIt.I.registerSingleton(DailyQuestManager());
-  // Achievement 시스템
-  GetIt.I.registerSingleton(AchievementManager());
-  // Collection 시스템
-  if (!GetIt.I.isRegistered<CollectionManager>()) {
-    GetIt.I.registerSingleton(CollectionManager());
-    _registerCollections();
+// 
+// void main() async {
+//   WidgetsFlutterBinding.ensureInitialized();
+//   await _initializeSystems();
+//   // DailyQuest 시스템
+//   GetIt.I.registerSingleton(DailyQuestManager());
+//   // Achievement 시스템
+//   GetIt.I.registerSingleton(AchievementManager());
+//   // Collection 시스템
+//   if (!GetIt.I.isRegistered<CollectionManager>()) {
+//     GetIt.I.registerSingleton(CollectionManager());
+//   // ── P3 Engine Systems ─────────────────────────────────────
+//   if (!GetIt.I.isRegistered<GuildWarManager>()) {
+//     GetIt.I.registerSingleton(GuildWarManager());
+//   }
+//   if (!GetIt.I.isRegistered<TournamentManager>()) {
+//     GetIt.I.registerSingleton(TournamentManager());
+//   }
+//   if (!GetIt.I.isRegistered<SeasonalContentManager>()) {
+//     GetIt.I.registerSingleton(SeasonalContentManager());
+//   }
+// _registerCollections();
+//   }
+//   _registerAchievements();
+//   _registerDailyQuests();
+//   // ── Tutorial & Balancing ──────────────────────────────────
+//   if (!GetIt.I.isRegistered<TutorialManager>()) {
+//     final tutorialManager = TutorialManager();
+//     await tutorialManager.initialize();
+//     tutorialManager.registerTutorial(
+//       kOnboardingTutorial.id,
+//       kOnboardingTutorial.steps,
+//     );
+//     GetIt.I.registerSingleton<TutorialManager>(tutorialManager);
   }
-  _registerAchievements();
-  _registerDailyQuests();
-  runApp(const FairyForestApp());
-}
-
-/// Initialize all DI-registered systems in correct dependency order.
-/// mg_common_game systems first, then game-specific managers.
-Future<void> _initializeSystems() async {
-  final di = GetIt.I;
-
-  // ── mg_common_game core systems ──────────────────────────
-  if (!di.isRegistered<AudioManager>()) {
-    di.registerSingleton<AudioManager>(AudioManager());
-  }
-  await di<AudioManager>().initialize();
-
-  // Unified Persistence
-  await SaveManagerHelper.setupSaveManager(
-    autoSaveEnabled: true,
-    autoSaveIntervalSeconds: 30,
-  );
-  await SaveManagerHelper.legacyLoadAll();
-
-  // ── Existing game managers ──────────────────────────────
-  if (!di.isRegistered<ForestManager>()) {
-    di.registerSingleton<ForestManager>(ForestManager());
-  }
-
-  // ── Healing Garden managers ─────────────────────────────
-  if (!di.isRegistered<HealingManager>()) {
-    di.registerSingleton<HealingManager>(HealingManager());
-  }
-
-  if (!di.isRegistered<GardenManager>()) {
-    di.registerSingleton<GardenManager>(GardenManager());
-  }
-
-  if (!di.isRegistered<ComboManager>()) {
-    di.registerSingleton<ComboManager>(ComboManager());
-  }
-
-  // ── Upgrade system ──────────────────────────────────────
-  if (!di.isRegistered<UpgradeManager>()) {
-    final upgrades = UpgradeManager();
-    di.registerSingleton<UpgradeManager>(upgrades);
-
-  // Prestige 시스템 (mg_common_game)
+//   if (!GetIt.I.isRegistered<BalancingManager>()) {
+//     GetIt.I.registerSingleton<BalancingManager>(
+//       BalancingManager(defaultConfig: kDefaultBalancingConfig),
+//     );
+//   }
+//   // ── Q7 DI Fix: Missing Systems ──────────────────────────
+//   if (!GetIt.I.isRegistered<BattlePassManager>()) {
+//     GetIt.I.registerSingleton<BattlePassManager>(BattlePassManager());
+//   }
+//   if (!GetIt.I.isRegistered<GachaManager>()) {
+//     GetIt.I.registerSingleton<GachaManager>(GachaManager());
+//   }
+// 
+//   runApp(const FairyForestApp());
+// }
+// 
+// /// Initialize all DI-registered systems in correct dependency order.
+// /// mg_common_game systems first, then game-specific managers.
+// Future<void> _initializeSystems() async {
+//   final di = GetIt.I;
+// 
+//   // ── mg_common_game core systems ──────────────────────────
+//   if (!di.isRegistered<AudioManager>()) {
+//     di.registerSingleton<AudioManager>(AudioManager());
+//   }
+//   await di<AudioManager>().initialize();
+// 
+//   // Unified Persistence
+//   await SaveManagerHelper.setupSaveManager(
+//     autoSaveEnabled: true,
+//     autoSaveIntervalSeconds: 30,
+//   );
+//   await SaveManagerHelper.legacyLoadAll();
+// 
+//   // ── Existing game managers ──────────────────────────────
+//   if (!di.isRegistered<ForestManager>()) {
+//     di.registerSingleton<ForestManager>(ForestManager());
+//   }
+// 
+//   // ── Healing Garden managers ─────────────────────────────
+//   if (!di.isRegistered<HealingManager>()) {
+//     di.registerSingleton<HealingManager>(HealingManager());
+//   }
+// 
+//   if (!di.isRegistered<GardenManager>()) {
+//     di.registerSingleton<GardenManager>(GardenManager());
+//   }
+// 
+//   if (!di.isRegistered<ComboManager>()) {
+//     di.registerSingleton<ComboManager>(ComboManager());
+//   }
+// 
+//   // ── Upgrade system ──────────────────────────────────────
+//   if (!di.isRegistered<UpgradeManager>()) {
+//     final upgrades = UpgradeManager();
+//     di.registerSingleton<UpgradeManager>(upgrades);
+// 
+//   // Prestige 시스템 (mg_common_game)
   if (!GetIt.I.isRegistered<PrestigeManager>()) {
     final prestigeManager = PrestigeManager();
     GetIt.I.registerSingleton(prestigeManager);
+  // ── Retention Systems for DailyHub ────────────────────────
+  //   if (!GetIt.I.isRegistered<LoginRewardsManager>()) {
+  //     GetIt.I.registerSingleton(LoginRewardsManager());
+  //   }
+  //   if (!GetIt.I.isRegistered<StreakManager>()) {
+  //     GetIt.I.registerSingleton(StreakManager());
+  //   }
+  //   if (!GetIt.I.isRegistered<DailyChallengeManager>()) {
+  //     GetIt.I.registerSingleton(DailyChallengeManager());
+  //   }
     _setupPrestige(prestigeManager);
     await prestigeManager.loadPrestigeData();
   }
@@ -110,7 +148,7 @@ Future<void> _initializeSystems() async {
 }
 
 // ============================================================
-// Upgrade Registration — 8 healing-garden upgrades
+// Upgrade Registration -- 8 healing-garden upgrades
 // Categories: Healing (3), Garden (3), Combo (2)
 // ============================================================
 
@@ -279,7 +317,7 @@ void _setupUpgradeListener() {
 }
 
 // ============================================================
-// Game Constants — Healing Garden balancing parameters
+// Game Constants -- Healing Garden balancing parameters
 // ============================================================
 
 /// Central balancing constants for the Healing Garden game.
@@ -322,7 +360,7 @@ abstract class HealingGardenConstants {
 }
 
 // ============================================================
-// App Root — MultiProvider wraps all game state
+// App Root -- MultiProvider wraps all game state
 // ============================================================
 
 class FairyForestApp extends StatelessWidget {
@@ -345,7 +383,34 @@ class FairyForestApp extends StatelessWidget {
         routes: {
           '/daily-quest': (_) => const DailyQuestScreen(),
           '/achievements': (_) => const AchievementScreen(),
-        },
+        '/daily-hub': (context) => DailyHubScreen(
+          questManager: GetIt.I<DailyQuestManager>(),
+          loginRewardsManager: GetIt.I<LoginRewardsManager>(),
+          streakManager: GetIt.I<StreakManager>(),
+          challengeManager: GetIt.I<DailyChallengeManager>(),
+          accentColor: MGColors.primaryAction,
+          onClose: () => Navigator.pop(context),
+        ),
+        
+          '/collection': (context) => CollectionScreen(
+            collectionManager: GetIt.I<CollectionManager>(),
+          ),
+          '/guild-war': (context) => GuildWarScreen(
+            guildWarManager: GetIt.I<GuildWarManager>(),
+            accentColor: MGColors.primaryAction,
+            onClose: () => Navigator.pop(context),
+            ),
+          '/tournament': (context) => TournamentScreen(
+            tournamentManager: GetIt.I<TournamentManager>(),
+            accentColor: MGColors.primaryAction,
+            onClose: () => Navigator.pop(context),
+            ),
+          '/seasonal-event': (context) => SeasonalEventScreen(
+            seasonalContentManager: GetIt.I<SeasonalContentManager>(),
+            accentColor: MGColors.primaryAction,
+            onClose: () => Navigator.pop(context),
+            ),
+},
         home: const MainScreen(),
       ),
     );
@@ -502,7 +567,7 @@ void _registerCollections() {
   final collection = GetIt.I<CollectionManager>();
 
   // Characters 컬렉션
-  collection.registerCollection(const Collection(
+  collection.registerCollection(Collection(
     id: 'characters',
     name: '캐릭터',
     description: '모든 캐릭터를 수집하세요',
@@ -538,11 +603,11 @@ void _registerCollections() {
         rarity: CollectionRarity.legendary,
       ),
     ],
-    completionReward: CollectionReward(gold: 10000, gems: 500, experience: 2000),
+    completionReward: CollectionReward(type: RewardType.gold, amount: 10000),
     milestoneRewards: {
-      25: CollectionReward(gold: 1000, gems: 50),
-      50: CollectionReward(gold: 3000, gems: 150),
-      75: CollectionReward(gold: 5000, gems: 300),
+      25: CollectionReward(type: RewardType.gold, amount: 1000),
+      50: CollectionReward(type: RewardType.gold, amount: 3000),
+      75: CollectionReward(type: RewardType.gold, amount: 5000),
     },
   ));
 

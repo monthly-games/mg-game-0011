@@ -1,5 +1,7 @@
+import 'package:mg_common_game/core/ui/layout/mg_spacing.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:mg_common_game/core/ui/theme/app_colors.dart';
 import 'package:mg_common_game/core/ui/theme/app_text_styles.dart';
@@ -12,6 +14,8 @@ import '../features/forest/components/structure_component.dart';
 import 'fairy_collection_dialog.dart';
 import 'hud/mg_forest_hud.dart';
 import 'package:mg_common_game/core/ui/theme/mg_colors.dart';
+import '../core/localization/app_localizations.dart';
+
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
@@ -182,7 +186,7 @@ Navigator.of(context).pushNamed('/seasonal-event');
 
                 // Bottom Menu
                 Container(
-                  padding: const EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(MGSpacing.md),
                   color: AppColors.panel.withValues(alpha: 0.9),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -222,7 +226,7 @@ Navigator.of(context).pushNamed('/seasonal-event');
       onTap: () => gm.selectStructure(type),
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 200),
-        padding: const EdgeInsets.all(8),
+        padding: const EdgeInsets.all(MGSpacing.xs),
         decoration: BoxDecoration(
           color: isSelected
               ? AppColors.primary.withValues(alpha: 0.2)
@@ -236,7 +240,7 @@ Navigator.of(context).pushNamed('/seasonal-event');
           mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-              padding: const EdgeInsets.all(8),
+              padding: const EdgeInsets.all(MGSpacing.xs),
               decoration: BoxDecoration(
                 color: MGColors.textHighEmphasis,
                 shape: BoxShape.circle,
@@ -251,7 +255,7 @@ Navigator.of(context).pushNamed('/seasonal-event');
               child: Icon(icon,
                   color: canAfford ? AppColors.primary : MGColors.common),
             ),
-            const SizedBox(height: 4),
+            const SizedBox(height: MGSpacing.xxs),
             Text(label,
                 style: AppTextStyles.caption.copyWith(
                     color: AppColors.textHighEmphasis,
@@ -262,7 +266,7 @@ Navigator.of(context).pushNamed('/seasonal-event');
               children: [
                 const Icon(Icons.water_drop,
                     size: 12, color: Colors.blueAccent),
-                const SizedBox(width: 4),
+                const SizedBox(width: MGSpacing.xxs),
                 Text("$cost",
                     style: AppTextStyles.caption.copyWith(
                         color: canAfford ? Colors.blueAccent : MGColors.common,
@@ -288,7 +292,7 @@ Navigator.of(context).pushNamed('/seasonal-event');
             mainAxisSize: MainAxisSize.min,
             children: [
               Icon(icon, size: 28, color: AppColors.primary),
-              const SizedBox(height: 4),
+              const SizedBox(height: MGSpacing.xxs),
               Text(label,
                   style: AppTextStyles.caption.copyWith(
                       color: AppColors.textHighEmphasis,
@@ -304,20 +308,20 @@ Navigator.of(context).pushNamed('/seasonal-event');
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Friend Forest Visit'),
-        content: const Column(
+        title: Text(context.l10n.ui_general_friend_forest_visit),
+        content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             ListTile(
-              leading: CircleAvatar(child: Text('A')),
+              leading: CircleAvatar(child: Text(context.l10n.ui_general_guild_war)),
               title: Text('Alice\'s Garden'),
-              subtitle: Text('Last active: 5m ago'),
+              subtitle: Text(context.l10n.ui_general_last_active_5m_ago),
               trailing: Icon(Icons.arrow_forward_ios, size: 16),
             ),
             ListTile(
-              leading: CircleAvatar(child: Text('B')),
+              leading: CircleAvatar(child: Text(context.l10n.ui_general_battle_pass)),
               title: Text('Bob\'s Woods'),
-              subtitle: Text('Last active: 1h ago'),
+              subtitle: Text(context.l10n.ui_general_last_active_1h_ago),
               trailing: Icon(Icons.arrow_forward_ios, size: 16),
             ),
           ],

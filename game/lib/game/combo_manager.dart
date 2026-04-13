@@ -88,7 +88,7 @@ class ComboManager extends ChangeNotifier {
     _comboTimer = Timer(
       Duration(milliseconds: (kBaseComboWindow * 1000).toInt()),
       () {
-        // Combo window expired — decay chain by 1
+        // Combo window expired -- decay chain by 1
         if (_currentChain > 1) {
           _currentChain--;
           _recalculateMultiplier();

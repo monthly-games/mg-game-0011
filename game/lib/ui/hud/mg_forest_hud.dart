@@ -43,67 +43,72 @@ class MGForestHud extends StatelessWidget {
               left: safeArea.left + MGSpacing.hudMargin,
               right: safeArea.right + MGSpacing.hudMargin,
             ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                // 마나 표시
-                _buildManaDisplay(),
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  // 마나 표시
+                  _buildManaDisplay(),
 
-                // 행복도 표시
-                _buildHappinessDisplay(),
+                  MGSpacing.hSm,
 
-                // 요정 수 표시
-                _buildFairyCount(),
+                  // 행복도 표시
+                  _buildHappinessDisplay(),
 
-                // 일시정지 버튼
-        if (onGuildWar != null)
-          MGIconButton(
-            icon: Icons.shield,
-            onPressed: onGuildWar,
-            size: 44,
-            backgroundColor: MGColors.info.withValues(alpha: 0.8),
-            color: MGColors.textHighEmphasis,
-            tooltip: 'Guild War',
-          ),
-        MGSpacing.hXs,
-        if (onTournament != null)
-          MGIconButton(
-            icon: Icons.emoji_events,
-            onPressed: onTournament,
-            size: 44,
-            backgroundColor: MGColors.info.withValues(alpha: 0.8),
-            color: MGColors.textHighEmphasis,
-            tooltip: 'Tournament',
-          ),
-        MGSpacing.hXs,
-        if (onSeasonalEvent != null)
-          MGIconButton(
-            icon: Icons.celebration,
-            onPressed: onSeasonalEvent,
-            size: 44,
-            backgroundColor: MGColors.info.withValues(alpha: 0.8),
-            color: MGColors.textHighEmphasis,
-            tooltip: 'Seasonal Event',
-          ),
-        MGSpacing.hXs,
-        if (onDailyHub != null)
-          MGIconButton(
-            icon: Icons.calendar_today,
-            onPressed: onDailyHub,
-            size: 44,
-            backgroundColor: MGColors.info.withValues(alpha: 0.8),
-            color: MGColors.textHighEmphasis,
-            tooltip: 'Daily Hub',
-          ),
-        MGSpacing.hXs,
-                MGIconButton(
-                  icon: Icons.pause,
-                  onPressed: onPause,
-                  size: 44,
-                  backgroundColor: Colors.black54,
-                  color: MGColors.textHighEmphasis,
-                ),
-              ],
+                  MGSpacing.hSm,
+
+                  // 요정 수 표시
+                  _buildFairyCount(),
+
+                  const Spacer(),
+
+                  // 일시정지 버튼
+          if (onGuildWar != null)
+            MGIconButton(
+              icon: Icons.shield,
+              onPressed: onGuildWar,
+              size: 40,
+              backgroundColor: MGColors.info.withValues(alpha: 0.8),
+              color: MGColors.textHighEmphasis,
+              tooltip: 'Guild War',
+            ),
+          if (onTournament != null)
+            MGIconButton(
+              icon: Icons.emoji_events,
+              onPressed: onTournament,
+              size: 40,
+              backgroundColor: MGColors.info.withValues(alpha: 0.8),
+              color: MGColors.textHighEmphasis,
+              tooltip: 'Tournament',
+            ),
+          if (onSeasonalEvent != null)
+            MGIconButton(
+              icon: Icons.celebration,
+              onPressed: onSeasonalEvent,
+              size: 40,
+              backgroundColor: MGColors.info.withValues(alpha: 0.8),
+              color: MGColors.textHighEmphasis,
+              tooltip: 'Seasonal Event',
+            ),
+          if (onDailyHub != null)
+            MGIconButton(
+              icon: Icons.calendar_today,
+              onPressed: onDailyHub,
+              size: 40,
+              backgroundColor: MGColors.info.withValues(alpha: 0.8),
+              color: MGColors.textHighEmphasis,
+              tooltip: 'Daily Hub',
+            ),
+                  MGIconButton(
+                    icon: Icons.pause,
+                    onPressed: onPause,
+                    size: 40,
+                    backgroundColor: Colors.black54,
+                    color: MGColors.textHighEmphasis,
+                  ),
+                ],
+              ),
             ),
           ),
 

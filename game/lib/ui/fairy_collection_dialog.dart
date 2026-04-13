@@ -1,3 +1,4 @@
+import 'package:mg_common_game/core/ui/layout/mg_spacing.dart';
 import 'package:flutter/material.dart';
 import '../features/forest/game_manager.dart';
 import 'package:mg_common_game/core/ui/theme/mg_colors.dart';
@@ -41,7 +42,7 @@ class FairyCollectionDialog extends StatelessWidget {
                     isDiscovered ? Icons.star : Icons.question_mark,
                     color: isDiscovered ? Colors.pinkAccent : MGColors.common,
                   ),
-                  const SizedBox(height: 4),
+                  const SizedBox(height: MGSpacing.xxs),
                   Text(
                     type.name.toUpperCase(),
                     style: TextStyle(

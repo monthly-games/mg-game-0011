@@ -1,5 +1,5 @@
 // ============================================================
-// Daily Quest Screen — MG-0011 Healing Forest
+// Daily Quest Screen -- MG-0011 Healing Forest
 // Genre: Idle · Retention System UI
 //
 // Firebase Analytics Events:
@@ -10,6 +10,9 @@
 //
 // Template: Based on MG-0010 canonical template.
 // ============================================================
+
+import '../core/localization/app_localizations.dart';
+
 
 import 'dart:async';
 
@@ -329,7 +332,7 @@ class _DailyQuestScreenState extends State<DailyQuestScreen> {
               const Spacer(),
               if (isClaimable)
                 MGButton(
-                  label: 'Claim',
+                  label: context.l10n.notification_rewardslength_rewards_claimed,
                   size: MGButtonSize.small,
                   icon: Icons.card_giftcard_rounded,
                   backgroundColor: MGColors.success,

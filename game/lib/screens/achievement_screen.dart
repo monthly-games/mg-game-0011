@@ -1,5 +1,5 @@
 // ============================================================
-// Achievement Screen — MG-0011 Healing Forest
+// Achievement Screen -- MG-0011 Healing Forest
 // Genre: Idle · Retention System UI
 //
 // Firebase Analytics Events:

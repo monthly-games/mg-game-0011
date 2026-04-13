@@ -1,5 +1,8 @@
+import 'package:mg_common_game/systems/progression/achievement_manager.dart';
+
 import 'package:mg_common_game/mg_common_game.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 import 'systems/forest_manager.dart';
@@ -10,11 +13,9 @@ import 'ui/main_screen.dart';
 import 'screens/daily_quest_screen.dart';
 import 'screens/achievement_screen.dart';
 import 'screens/collection_screen.dart';
-import 'game/tutorial_config.dart';
-import 'game/balancing_config.dart';
 
 // ============================================================
-// Healing Garden — MG-0011
+// Healing Garden -- MG-0011
 // Phase 1 Week 4: Mechanic Enhancement (Puzzle)
 //
 // Genre: Puzzle (match-3 + garden management hybrid)
@@ -31,50 +32,6 @@ import 'game/balancing_config.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await _initializeSystems();
-  // DailyQuest 시스템
-  GetIt.I.registerSingleton(DailyQuestManager());
-  // Achievement 시스템
-  GetIt.I.registerSingleton(AchievementManager());
-  // Collection 시스템
-  if (!GetIt.I.isRegistered<CollectionManager>()) {
-    GetIt.I.registerSingleton(CollectionManager());
-  // ── P3 Engine Systems ─────────────────────────────────────
-  if (!GetIt.I.isRegistered<GuildWarManager>()) {
-    GetIt.I.registerSingleton(GuildWarManager());
-  }
-  if (!GetIt.I.isRegistered<TournamentManager>()) {
-    GetIt.I.registerSingleton(TournamentManager());
-  }
-  if (!GetIt.I.isRegistered<SeasonalContentManager>()) {
-    GetIt.I.registerSingleton(SeasonalContentManager());
-  }
-_registerCollections();
-  }
-  _registerAchievements();
-  _registerDailyQuests();
-  // ── Tutorial & Balancing ──────────────────────────────────
-  if (!GetIt.I.isRegistered<TutorialManager>()) {
-    final tutorialManager = TutorialManager();
-    await tutorialManager.initialize();
-    tutorialManager.registerTutorial(
-      kOnboardingTutorial.id,
-      kOnboardingTutorial.steps,
-    );
-    GetIt.I.registerSingleton<TutorialManager>(tutorialManager);
-  }
-  if (!GetIt.I.isRegistered<BalancingManager>()) {
-    GetIt.I.registerSingleton<BalancingManager>(
-      BalancingManager(defaultConfig: kDefaultBalancingConfig),
-    );
-  }
-  // ── Q7 DI Fix: Missing Systems ──────────────────────────
-  if (!GetIt.I.isRegistered<BattlePassManager>()) {
-    GetIt.I.registerSingleton<BattlePassManager>(BattlePassManager());
-  }
-  if (!GetIt.I.isRegistered<GachaManager>()) {
-    GetIt.I.registerSingleton<GachaManager>(GachaManager());
-  }
-
   runApp(const FairyForestApp());
 }
 
@@ -118,26 +75,45 @@ Future<void> _initializeSystems() async {
   if (!di.isRegistered<UpgradeManager>()) {
     final upgrades = UpgradeManager();
     di.registerSingleton<UpgradeManager>(upgrades);
+    _registerUpgrades(upgrades);
+    await upgrades.loadUpgrades();
+  }
 
   // Prestige 시스템 (mg_common_game)
-  if (!GetIt.I.isRegistered<PrestigeManager>()) {
+  if (!di.isRegistered<PrestigeManager>()) {
     final prestigeManager = PrestigeManager();
-    GetIt.I.registerSingleton(prestigeManager);
-  // ── Retention Systems for DailyHub ────────────────────────
-  if (!GetIt.I.isRegistered<LoginRewardsManager>()) {
-    GetIt.I.registerSingleton(LoginRewardsManager());
-  }
-  if (!GetIt.I.isRegistered<StreakManager>()) {
-    GetIt.I.registerSingleton(StreakManager());
-  }
-  if (!GetIt.I.isRegistered<DailyChallengeManager>()) {
-    GetIt.I.registerSingleton(DailyChallengeManager());
-  }
+    di.registerSingleton(prestigeManager);
     _setupPrestige(prestigeManager);
     await prestigeManager.loadPrestigeData();
   }
-    _registerUpgrades(upgrades);
-    await upgrades.loadUpgrades();
+
+  // DailyQuest 시스템
+  if (!di.isRegistered<DailyQuestManager>()) {
+    di.registerSingleton(DailyQuestManager());
+  }
+  _registerDailyQuests();
+
+  // Achievement 시스템
+  if (!di.isRegistered<AchievementManager>()) {
+    di.registerSingleton(AchievementManager());
+  }
+  _registerAchievements();
+
+  // Collection 시스템
+  if (!di.isRegistered<CollectionManager>()) {
+    di.registerSingleton(CollectionManager());
+  }
+  _registerCollections();
+
+  // ── P3 Engine Systems ─────────────────────────────────────
+  if (!di.isRegistered<GuildWarManager>()) {
+    di.registerSingleton(GuildWarManager());
+  }
+  if (!di.isRegistered<TournamentManager>()) {
+    di.registerSingleton(TournamentManager());
+  }
+  if (!di.isRegistered<SeasonalContentManager>()) {
+    di.registerSingleton(SeasonalContentManager());
   }
 
   // Apply saved upgrade levels to runtime managers
@@ -148,7 +124,7 @@ Future<void> _initializeSystems() async {
 }
 
 // ============================================================
-// Upgrade Registration — 8 healing-garden upgrades
+// Upgrade Registration -- 8 healing-garden upgrades
 // Categories: Healing (3), Garden (3), Combo (2)
 // ============================================================
 
@@ -317,7 +293,7 @@ void _setupUpgradeListener() {
 }
 
 // ============================================================
-// Game Constants — Healing Garden balancing parameters
+// Game Constants -- Healing Garden balancing parameters
 // ============================================================
 
 /// Central balancing constants for the Healing Garden game.
@@ -360,7 +336,7 @@ abstract class HealingGardenConstants {
 }
 
 // ============================================================
-// App Root — MultiProvider wraps all game state
+// App Root -- MultiProvider wraps all game state
 // ============================================================
 
 class FairyForestApp extends StatelessWidget {
@@ -383,15 +359,14 @@ class FairyForestApp extends StatelessWidget {
         routes: {
           '/daily-quest': (_) => const DailyQuestScreen(),
           '/achievements': (_) => const AchievementScreen(),
-        '/daily-hub': (context) => DailyHubScreen(
-          questManager: GetIt.I<DailyQuestManager>(),
-          loginRewardsManager: GetIt.I<LoginRewardsManager>(),
-          streakManager: GetIt.I<StreakManager>(),
-          challengeManager: GetIt.I<DailyChallengeManager>(),
-          accentColor: MGColors.primaryAction,
-          onClose: () => Navigator.pop(context),
-        ),
-        
+          '/daily-hub': (context) => DailyHubScreen(
+            questManager: GetIt.I<DailyQuestManager>(),
+            loginRewardsManager: GetIt.I<LoginRewardsManager>(),
+            streakManager: GetIt.I<StreakManager>(),
+            challengeManager: GetIt.I<DailyChallengeManager>(),
+            accentColor: MGColors.primaryAction,
+            onClose: () => Navigator.pop(context),
+          ),
           '/collection': (context) => CollectionScreen(
             collectionManager: GetIt.I<CollectionManager>(),
           ),
@@ -399,18 +374,18 @@ class FairyForestApp extends StatelessWidget {
             guildWarManager: GetIt.I<GuildWarManager>(),
             accentColor: MGColors.primaryAction,
             onClose: () => Navigator.pop(context),
-            ),
+          ),
           '/tournament': (context) => TournamentScreen(
             tournamentManager: GetIt.I<TournamentManager>(),
             accentColor: MGColors.primaryAction,
             onClose: () => Navigator.pop(context),
-            ),
+          ),
           '/seasonal-event': (context) => SeasonalEventScreen(
             seasonalContentManager: GetIt.I<SeasonalContentManager>(),
             accentColor: MGColors.primaryAction,
             onClose: () => Navigator.pop(context),
-            ),
-},
+          ),
+        },
         home: const MainScreen(),
       ),
     );
@@ -445,56 +420,54 @@ class FairyForestApp extends StatelessWidget {
   }
 }
 
-
 void _registerDailyQuests() {
   final dailyQuest = GetIt.I<DailyQuestManager>();
-  
+
   dailyQuest.registerQuest(DailyQuest(
-    id: 'collect_gold',
-    title: '골드 모으기',
-    description: '골드 1000 획득',
-    targetValue: 1000,
-    goldReward: 500,
-    xpReward: 10,
-  ));
-  
-  dailyQuest.registerQuest(DailyQuest(
-    id: 'play_games',
-    title: '게임 플레이',
-    description: '게임 5판 플레이',
-    targetValue: 5,
+    id: 'raid_bosses_3',
+    title: 'Raid Boss Hunter',
+    description: 'Defeat 3 raid bosses',
+    targetValue: 3,
     goldReward: 300,
-    xpReward: 5,
+    xpReward: 75,
   ));
-  
+
   dailyQuest.registerQuest(DailyQuest(
-    id: 'level_up',
-    title: '레벨업',
-    description: '레벨 1 상승',
-    targetValue: 1,
-    goldReward: 200,
-    xpReward: 3,
+    id: 'raid_loot_50',
+    title: 'Loot Collector',
+    description: 'Collect 50 raid items',
+    targetValue: 50,
+    goldReward: 250,
+    xpReward: 60,
+  ));
+
+  dailyQuest.registerQuest(DailyQuest(
+    id: 'raid_gold_2000',
+    title: 'Raid Wealth',
+    description: 'Earn 2000 gold from raids',
+    targetValue: 2000,
+    goldReward: 400,
+    xpReward: 100,
   ));
 }
 
-
 void _registerAchievements() {
   final achievement = GetIt.I<AchievementManager>();
-  
+
   achievement.registerAchievement(Achievement(
     id: 'gold_1000',
     title: '골드 1000 달성',
     description: '총 골드 1000을 모으세요',
     iconAsset: 'assets/achievements/gold_1000.png',
   ));
-  
+
   achievement.registerAchievement(Achievement(
     id: 'level_10',
     title: '레벨 10 달성',
     description: '레벨 10에 도달하세요',
     iconAsset: 'assets/achievements/level_10.png',
   ));
-  
+
   achievement.registerAchievement(Achievement(
     id: 'play_100',
     title: '100판 플레이',
@@ -550,17 +523,6 @@ void _setupPrestige(PrestigeManager manager) {
     costPerLevel: 3,
     bonusPerLevel: 0.2,
   ));
-
-  // ── Prestige Reset Callbacks ────────────────────────────────
-  // TODO: Add game-specific reset callbacks:
-  // manager.registerResetCallback(() {
-  //   if (GetIt.I.isRegistered<ProgressionManager>()) {
-  //     GetIt.I<ProgressionManager>().reset();
-  //   }
-  //   if (GetIt.I.isRegistered<UpgradeManager>()) {
-  //     GetIt.I<UpgradeManager>().reset();
-  //   }
-  // });
 }
 
 void _registerCollections() {
@@ -616,4 +578,34 @@ void _registerCollections() {
     // SettingsManager가 등록되어 있으면 햅틱 피드백
     debugPrint('Collection item unlocked: $collectionId / $itemId');
   };
+
+
+  Widget _buildSpineCharacter() {
+    return GestureDetector(
+      onTap: () {
+        HapticFeedback.lightImpact();
+      },
+      child: Container(
+        width: 60,
+        height: 60,
+        decoration: BoxDecoration(
+          color: Colors.orange.withValues(alpha: 0.6),
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: Colors.orange.withAlpha(150), width: 2),
+        ),
+        child: const Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(Icons.person, size: 24, color: Colors.white),
+            SizedBox(height: 2),
+            Text(
+              'Chef',
+              style: TextStyle(color: Colors.white, fontSize: 8, fontWeight: FontWeight.bold),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
 }
