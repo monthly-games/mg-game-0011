@@ -205,7 +205,7 @@ class _CollectionScreenState extends State<CollectionScreen> {
               ),
             ],
           ),
-          SizedBox(height: MGSpacing.md),
+          const SizedBox(height: MGSpacing.md),
           MGLinearProgress(
             value: overallProgress,
             height: 8,
@@ -224,19 +224,19 @@ class _CollectionScreenState extends State<CollectionScreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(
+          const Icon(
             Icons.collections,
             size: 64,
             color: MGColors.textMediumEmphasis,
           ),
-          SizedBox(height: MGSpacing.md),
+          const SizedBox(height: MGSpacing.md),
           Text(
             'No Collections Yet',
             style: MGTextStyles.h3.copyWith(
               color: MGColors.textHighEmphasis,
             ),
           ),
-          SizedBox(height: MGSpacing.sm),
+          const SizedBox(height: MGSpacing.sm),
           Text(
             'Collections will appear as you unlock items',
             style: MGTextStyles.body.copyWith(
@@ -251,12 +251,12 @@ class _CollectionScreenState extends State<CollectionScreen> {
   // ── Collections list ─────────────────────────────────────
   Widget _buildCollectionsList(List<Collection> collections) {
     return ListView.builder(
-      padding: EdgeInsets.all(MGSpacing.md),
+      padding: const EdgeInsets.all(MGSpacing.md),
       itemCount: collections.length,
       itemBuilder: (context, index) {
         final collection = collections[index];
         return Padding(
-          padding: EdgeInsets.only(bottom: MGSpacing.md),
+          padding: const EdgeInsets.only(bottom: MGSpacing.md),
           child: _buildCollectionCard(collection),
         );
       },
@@ -291,7 +291,7 @@ class _CollectionScreenState extends State<CollectionScreen> {
                         color: MGColors.textHighEmphasis,
                       ),
                     ),
-                    SizedBox(height: MGSpacing.xs),
+                    const SizedBox(height: MGSpacing.xs),
                     Text(
                       '$unlockedCount / $totalCount items',
                       style: MGTextStyles.caption.copyWith(
@@ -320,7 +320,7 @@ class _CollectionScreenState extends State<CollectionScreen> {
               ),
             ],
           ),
-          SizedBox(height: MGSpacing.md),
+          const SizedBox(height: MGSpacing.md),
           // Progress bar
           MGLinearProgress(
             value: progress,
@@ -329,7 +329,7 @@ class _CollectionScreenState extends State<CollectionScreen> {
             backgroundColor: MGColors.surfaceDark,
             borderRadius: 4,
           ),
-          SizedBox(height: MGSpacing.md),
+          const SizedBox(height: MGSpacing.md),
           // Milestones
           if (collection.milestoneRewards != null &&
               collection.milestoneRewards!.isNotEmpty)
@@ -338,7 +338,7 @@ class _CollectionScreenState extends State<CollectionScreen> {
           if (isComplete && collection.completionReward != null)
             _buildCompletionReward(collection, completionRewardClaimed),
           // Item grid
-          SizedBox(height: MGSpacing.md),
+          const SizedBox(height: MGSpacing.md),
           _buildItemGrid(collection),
         ],
       ),
@@ -361,7 +361,7 @@ class _CollectionScreenState extends State<CollectionScreen> {
             color: MGColors.textMediumEmphasis,
           ),
         ),
-        SizedBox(height: MGSpacing.sm),
+        const SizedBox(height: MGSpacing.sm),
         Wrap(
           spacing: MGSpacing.sm,
           runSpacing: MGSpacing.sm,
@@ -411,7 +411,7 @@ class _CollectionScreenState extends State<CollectionScreen> {
                       ),
                     ),
                     if (isClaimed)
-                      Padding(
+                      const Padding(
                         padding: EdgeInsets.only(left: MGSpacing.xs),
                         child: Icon(
                           Icons.check,
@@ -425,7 +425,7 @@ class _CollectionScreenState extends State<CollectionScreen> {
             );
           }).toList(),
         ),
-        SizedBox(height: MGSpacing.md),
+        const SizedBox(height: MGSpacing.md),
       ],
     );
   }
@@ -446,7 +446,7 @@ class _CollectionScreenState extends State<CollectionScreen> {
           backgroundColor: claimed ? MGColors.success : MGColors.primaryAction,
           onPressed: claimed ? null : () => _onClaimCompletion(collection.id),
         ),
-        SizedBox(height: MGSpacing.md),
+        const SizedBox(height: MGSpacing.md),
       ],
     );
   }
@@ -508,7 +508,7 @@ class _CollectionScreenState extends State<CollectionScreen> {
                 color: Colors.black.withValues(alpha: 0.5),
                 borderRadius: BorderRadius.circular(6),
               ),
-              child: Icon(
+              child: const Icon(
                 Icons.lock,
                 color: MGColors.textHighEmphasis,
                 size: 24,

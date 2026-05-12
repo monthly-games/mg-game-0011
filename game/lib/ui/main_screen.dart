@@ -1,7 +1,6 @@
 import 'package:mg_common_game/core/ui/layout/mg_spacing.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:mg_common_game/core/ui/theme/app_colors.dart';
 import 'package:mg_common_game/core/ui/theme/app_text_styles.dart';
@@ -14,7 +13,6 @@ import '../features/forest/components/structure_component.dart';
 import 'fairy_collection_dialog.dart';
 import 'hud/mg_forest_hud.dart';
 import 'package:mg_common_game/core/ui/theme/mg_colors.dart';
-import '../core/localization/app_localizations.dart';
 
 
 class MainScreen extends StatelessWidget {
@@ -308,20 +306,20 @@ Navigator.of(context).pushNamed('/seasonal-event');
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text(context.l10n.ui_general_friend_forest_visit),
-        content: Column(
+        title: const Text('Friend Forest Visit'),
+        content: const Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             ListTile(
-              leading: CircleAvatar(child: Text(context.l10n.ui_general_guild_war)),
+              leading: CircleAvatar(child: Text('GW')),
               title: Text('Alice\'s Garden'),
-              subtitle: Text(context.l10n.ui_general_last_active_5m_ago),
+              subtitle: Text('Last active 5m ago'),
               trailing: Icon(Icons.arrow_forward_ios, size: 16),
             ),
             ListTile(
-              leading: CircleAvatar(child: Text(context.l10n.ui_general_battle_pass)),
+              leading: CircleAvatar(child: Text('BP')),
               title: Text('Bob\'s Woods'),
-              subtitle: Text(context.l10n.ui_general_last_active_1h_ago),
+              subtitle: Text('Last active 1h ago'),
               trailing: Icon(Icons.arrow_forward_ios, size: 16),
             ),
           ],

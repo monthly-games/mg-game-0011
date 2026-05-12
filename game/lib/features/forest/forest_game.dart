@@ -14,6 +14,7 @@ class ForestGame extends FlameGame with TapCallbacks {
 
   ForestGame({required this.gameManager});
 
+  @override
   Color backgroundColor() => const Color(0xFFC8E6C9);
 
   @override

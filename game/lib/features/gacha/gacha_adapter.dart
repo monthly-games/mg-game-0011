@@ -53,30 +53,30 @@ class TreeGachaAdapter extends ChangeNotifier {
   List<GachaItem> _generateItems() {
     return [
       // UR (0.6%)
-      GachaItem(id: 'ur_forest_001', nameKr: '전설의 Tree', rarity: GachaRarity.ultraRare),
-      GachaItem(id: 'ur_forest_002', nameKr: '신화의 Tree', rarity: GachaRarity.ultraRare),
+      const GachaItem(id: 'ur_forest_001', nameKr: '전설의 Tree', rarity: GachaRarity.ultraRare),
+      const GachaItem(id: 'ur_forest_002', nameKr: '신화의 Tree', rarity: GachaRarity.ultraRare),
       // SSR (2.4%)
-      GachaItem(id: 'ssr_forest_001', nameKr: '영웅의 Tree', rarity: GachaRarity.superRare),
-      GachaItem(id: 'ssr_forest_002', nameKr: '고대의 Tree', rarity: GachaRarity.superRare),
-      GachaItem(id: 'ssr_forest_003', nameKr: '황금의 Tree', rarity: GachaRarity.superRare),
+      const GachaItem(id: 'ssr_forest_001', nameKr: '영웅의 Tree', rarity: GachaRarity.superRare),
+      const GachaItem(id: 'ssr_forest_002', nameKr: '고대의 Tree', rarity: GachaRarity.superRare),
+      const GachaItem(id: 'ssr_forest_003', nameKr: '황금의 Tree', rarity: GachaRarity.superRare),
       // SR (12%)
-      GachaItem(id: 'sr_forest_001', nameKr: '희귀한 Tree A', rarity: GachaRarity.superRare),
-      GachaItem(id: 'sr_forest_002', nameKr: '희귀한 Tree B', rarity: GachaRarity.superRare),
-      GachaItem(id: 'sr_forest_003', nameKr: '희귀한 Tree C', rarity: GachaRarity.superRare),
-      GachaItem(id: 'sr_forest_004', nameKr: '희귀한 Tree D', rarity: GachaRarity.superRare),
+      const GachaItem(id: 'sr_forest_001', nameKr: '희귀한 Tree A', rarity: GachaRarity.superRare),
+      const GachaItem(id: 'sr_forest_002', nameKr: '희귀한 Tree B', rarity: GachaRarity.superRare),
+      const GachaItem(id: 'sr_forest_003', nameKr: '희귀한 Tree C', rarity: GachaRarity.superRare),
+      const GachaItem(id: 'sr_forest_004', nameKr: '희귀한 Tree D', rarity: GachaRarity.superRare),
       // R (35%)
-      GachaItem(id: 'r_forest_001', nameKr: '우수한 Tree A', rarity: GachaRarity.rare),
-      GachaItem(id: 'r_forest_002', nameKr: '우수한 Tree B', rarity: GachaRarity.rare),
-      GachaItem(id: 'r_forest_003', nameKr: '우수한 Tree C', rarity: GachaRarity.rare),
-      GachaItem(id: 'r_forest_004', nameKr: '우수한 Tree D', rarity: GachaRarity.rare),
-      GachaItem(id: 'r_forest_005', nameKr: '우수한 Tree E', rarity: GachaRarity.rare),
+      const GachaItem(id: 'r_forest_001', nameKr: '우수한 Tree A', rarity: GachaRarity.rare),
+      const GachaItem(id: 'r_forest_002', nameKr: '우수한 Tree B', rarity: GachaRarity.rare),
+      const GachaItem(id: 'r_forest_003', nameKr: '우수한 Tree C', rarity: GachaRarity.rare),
+      const GachaItem(id: 'r_forest_004', nameKr: '우수한 Tree D', rarity: GachaRarity.rare),
+      const GachaItem(id: 'r_forest_005', nameKr: '우수한 Tree E', rarity: GachaRarity.rare),
       // N (50%)
-      GachaItem(id: 'n_forest_001', nameKr: '일반 Tree A', rarity: GachaRarity.normal),
-      GachaItem(id: 'n_forest_002', nameKr: '일반 Tree B', rarity: GachaRarity.normal),
-      GachaItem(id: 'n_forest_003', nameKr: '일반 Tree C', rarity: GachaRarity.normal),
-      GachaItem(id: 'n_forest_004', nameKr: '일반 Tree D', rarity: GachaRarity.normal),
-      GachaItem(id: 'n_forest_005', nameKr: '일반 Tree E', rarity: GachaRarity.normal),
-      GachaItem(id: 'n_forest_006', nameKr: '일반 Tree F', rarity: GachaRarity.normal),
+      const GachaItem(id: 'n_forest_001', nameKr: '일반 Tree A', rarity: GachaRarity.normal),
+      const GachaItem(id: 'n_forest_002', nameKr: '일반 Tree B', rarity: GachaRarity.normal),
+      const GachaItem(id: 'n_forest_003', nameKr: '일반 Tree C', rarity: GachaRarity.normal),
+      const GachaItem(id: 'n_forest_004', nameKr: '일반 Tree D', rarity: GachaRarity.normal),
+      const GachaItem(id: 'n_forest_005', nameKr: '일반 Tree E', rarity: GachaRarity.normal),
+      const GachaItem(id: 'n_forest_006', nameKr: '일반 Tree F', rarity: GachaRarity.normal),
     ];
   }
 

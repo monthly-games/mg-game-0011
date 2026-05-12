@@ -11,9 +11,6 @@
 // Template: Based on MG-0010 canonical template.
 // ============================================================
 
-import '../core/localization/app_localizations.dart';
-
-
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -148,7 +145,7 @@ class _DailyQuestScreenState extends State<DailyQuestScreen> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(
+          const Icon(
             Icons.assignment_late_rounded,
             size: MGSpacing.xxl,
             color: MGColors.textDisabled,
@@ -332,7 +329,7 @@ class _DailyQuestScreenState extends State<DailyQuestScreen> {
               const Spacer(),
               if (isClaimable)
                 MGButton(
-                  label: context.l10n.notification_rewardslength_rewards_claimed,
+                  label: 'Claim ${quest.goldReward} gold',
                   size: MGButtonSize.small,
                   icon: Icons.card_giftcard_rounded,
                   backgroundColor: MGColors.success,
@@ -343,7 +340,7 @@ class _DailyQuestScreenState extends State<DailyQuestScreen> {
                 Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.check_circle_rounded,
                       size: MGIcons.badgeSize,
                       color: MGColors.success,
@@ -392,7 +389,7 @@ class _DailyQuestScreenState extends State<DailyQuestScreen> {
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(
+            const Icon(
               Icons.monetization_on_rounded,
               size: MGIcons.badgeSize,
               color: MGColors.gold,
@@ -410,7 +407,7 @@ class _DailyQuestScreenState extends State<DailyQuestScreen> {
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(
+            const Icon(
               Icons.star_rounded,
               size: MGIcons.badgeSize,
               color: MGColors.exp,

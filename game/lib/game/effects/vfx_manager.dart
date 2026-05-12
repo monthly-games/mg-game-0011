@@ -60,8 +60,11 @@ class VfxManager extends Component with HasGameReference {
         final path = Path();
         for (int j = 0; j < 4; j++) {
           final a = (j * pi / 2);
-          if (j == 0) path.moveTo(cos(a) * size, sin(a) * size);
-          else path.lineTo(cos(a) * size, sin(a) * size);
+          if (j == 0) {
+            path.moveTo(cos(a) * size, sin(a) * size);
+          } else {
+            path.lineTo(cos(a) * size, sin(a) * size);
+          }
         }
         path.close();
         canvas.drawPath(path, Paint()..color = color.withValues(alpha: opacity));
